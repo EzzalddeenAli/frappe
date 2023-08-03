@@ -312,11 +312,11 @@ class Database:
 			_query = _query or str(mogrified_query)
 			frappe.log(f"#### query\n{_query}\n####")
 
-		if unmogrified_query and is_query_type(
-			unmogrified_query, ("alter", "drop", "create", "truncate", "rename")
-		):
-			_query = _query or str(mogrified_query)
-			self.logger.warning("DDL Query made to DB:\n" + _query)
+		#if unmogrified_query and is_query_type(
+		#	unmogrified_query, ("alter", "drop", "create", "truncate", "rename")
+	#	):
+		#	_query = _query or str(mogrified_query)
+		#	self.logger.warning("DDL Query made to DB:\n" + _query)
 
 		if frappe.flags.in_migrate:
 			_query = _query or str(mogrified_query)
