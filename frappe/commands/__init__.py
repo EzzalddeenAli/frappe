@@ -76,11 +76,14 @@ def popen(command, *args, **kwargs):
 			psutil.Process().nice(19)
 			psutil.Process().ionice(psutil.IOPRIO_CLASS_IDLE)
 		elif psutil.WINDOWS:
-			psutil.Process().nice(psutil.IDLE_PRIORITY_CLASS)
-			psutil.Process().ionice(psutil.IOPRIO_VERYLOW)
+			win32process.SetPriorityClass(win32process.GetCurrentProcess(),
+										  win32process.IDLE_PRIORITY_CLASS)
+		# psutil.Process().nice(psutil.IDLE_PRIORITY_CLASS)
+		# psutil.Process().ionice(psutil.IOPRIO_VERYLOW)
 		else:
 			psutil.Process().nice(19)
-			# ionice not supported
+		# ionice not supported
+
 
 	proc = subprocess.Popen(
 		command,
